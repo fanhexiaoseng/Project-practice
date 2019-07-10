@@ -9,7 +9,7 @@
    		  cd.. 上层路径<br>
            cd../..上上层路径<br>
            cd~ 家目录<br>
-           cd- 回到上次目录<br>          
+           cd- 回到上次目录<br>
 7.创建文件：touch+文件名<br>
 8.创建文件夹：mkdir+文件夹名字<br>
             mkdir A/B/C/D -p 创建递归目录<br>
@@ -64,4 +64,13 @@
    添加密码：passwd<br>
    当前用户：whoami<br>
    退出：exit<br>
-33.远程登录：
+33.远程登录：ssh python@172.16.7.139<br>
+34.切换管理员：sudo -s<br>
+35.创建组：groupadd<br>
+   删除组：groupdel<br>
+36.d（文件或文件夹）rwx（所属者）r-x（组）r-x（其他）<br>
+   r（读）w（写）x（执行）<br>
+37.修改权限：chmod u=rwx(用户) 2.py<br>
+                  g=（组）<br>
+                  o=（其他）<br>
+           chmod 137 2.py (r=4 w=2 x=1)<br>
