@@ -5,8 +5,8 @@
 4.当前路径下的文件：ls，ll<br>
 5.当前路径：pwd<br>
 6.切换路径：cd+路径<br>
-   				 cd ./A 当前路径下的A文件夹<br>
-   				 cd.. 上层路径<br>
+   		  cd ./A 当前路径下的A文件夹<br>
+   		  cd.. 上层路径<br>
            cd../..上上层路径<br>
            cd~ 家目录<br>
            cd- 回到上次目录<br>          
@@ -59,5 +59,9 @@
 30.查看硬盘：ds<br>
    查看当前路径使用情况：du<br>
 31.查看网络信息：ifconfig<br>
-   检验连接是否成功：ping ip地址
-32.
+   检验连接是否成功：ping ip地址<br>
+32.添加用户：useradd<br>
+   添加密码：passwd<br>
+   当前用户：whoami<br>
+   退出：exit<br>
+33.远程登录：
