@@ -1,6 +1,11 @@
 ## python核心知识
 ********************
 - ### python高级编程
+1.重新导入模块：
+```
+from imp import *
+reload(text)
+```
 - ### Linux系统编程
 - ### 网络编程
 - ### web服务器案例
