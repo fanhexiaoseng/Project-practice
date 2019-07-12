@@ -1,7 +1,7 @@
 ## python核心知识
 ********************
 - ### python高级编程
-1.重新导入模块：<br>
+1. 重新导入模块：<br>
 ```
 from imp import *
 reload(text)
