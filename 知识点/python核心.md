@@ -59,7 +59,17 @@ G = ( x*2 for x in range(5))
 G
 <generator object <genexpr> at 0x7f626c132db0>
 ```
-
+带yield函数<br>
+```
+def fib(times):
+     n = 0
+     a,b = 0,1
+     while n<times:
+         yield b
+         a,b = b,a+b
+         n+=1
+     return 'done' 
+```
 8. 可迭代对象：可以作用于for循环的list,dict,tuple,str,set,生成器，带yield<br>
 迭代器：一定可以迭代，可以用next（）方法的，生成器都是迭代器，iter（）将可迭代对象变成迭代器<br>
 - ### Linux系统编程
