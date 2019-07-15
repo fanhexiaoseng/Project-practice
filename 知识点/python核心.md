@@ -33,8 +33,35 @@ class Money(object):
             self.__money = value
         else:
             print("error:不是整型数字")
-    money = property(getMoney, setMoney)
 ```
+另一种实现方式<br>
+```
+class Money(object):
+    def __init__(self):
+        self.__money = 0
+
+    @property
+    def money(self):
+        return self.__money
+
+    @money.setter
+    def money(self, value):
+        if isinstance(value, int):
+            self.__money = value
+        else:
+            print("error:不是整型数字")
+```
+7. 生成器<br>
+列表生成式-->（）<br>
+```
+L = [ x*2 for x in range(5)]
+G = ( x*2 for x in range(5))
+G
+<generator object <genexpr> at 0x7f626c132db0>
+```
+
+8. 可迭代对象：可以作用于for循环的list,dict,tuple,str,set,生成器，带yield<br>
+迭代器：一定可以迭代，可以用next（）方法的，生成器都是迭代器，iter（）将可迭代对象变成迭代器<br>
 - ### Linux系统编程
 - ### 网络编程
 - ### web服务器案例
