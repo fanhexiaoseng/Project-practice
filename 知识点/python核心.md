@@ -60,7 +60,7 @@ G = ( x*2 for x in range(5))
 G
 <generator object <genexpr> at 0x7f626c132db0>
 ```
-带yield函数，next（）调用，a.__next__()调用<br>
+带yield函数，next（）调用，a.\_\_next\_\_()调用<br>
 ```
 def fib(times):
      n = 0
@@ -88,9 +88,10 @@ while True:
     t1.__next__()
     t2.__next__()
 ```
-
 8. 可迭代对象(Iterable)：可以作用于for循环的list,dict,tuple,str,set,生成器，带yield<br>
 迭代器(Iterator)：一定可以迭代，可以用next（）方法的，生成器都是迭代器，iter（）将可迭代对象变成迭代器<br>
+9. 装饰器<br>
+
 - ### Linux系统编程
 - ### 网络编程
 - ### web服务器案例
