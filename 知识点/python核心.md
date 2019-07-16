@@ -91,7 +91,19 @@ while True:
 8. 可迭代对象(Iterable)：可以作用于for循环的list,dict,tuple,str,set,生成器，带yield<br>
 迭代器(Iterator)：一定可以迭代，可以用next（）方法的，生成器都是迭代器，iter（）将可迭代对象变成迭代器<br>
 9. 装饰器<br>
-
+```
+def w1(func):
+    def inner():
+        print("------验证------")
+        func()
+    return inner
+#f1 = w1(f1)
+@w1
+def f1():
+    print("------f1------")
+f1()
+```
+两个装饰器的情况，先执行下面的函数<br>
 - ### Linux系统编程
 - ### 网络编程
 - ### web服务器案例
