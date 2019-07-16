@@ -33,6 +33,7 @@ class Money(object):
             self.__money = value
         else:
             print("error:不是整型数字")
+    money = property(setMoney,getMoney)
 ```
 另一种实现方式<br>
 ```
