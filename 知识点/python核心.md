@@ -59,7 +59,7 @@ G = ( x*2 for x in range(5))
 G
 <generator object <genexpr> at 0x7f626c132db0>
 ```
-带yield函数<br>
+带yield函数，next（）调用<br>
 ```
 def fib(times):
      n = 0
