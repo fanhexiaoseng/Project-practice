@@ -103,7 +103,58 @@ def f1():
     print("------f1------")
 f1()
 ```
+通用装饰器<br>
+```
+def func(functionName):
+    def func_in(*args,**kwargs):
+        print("----记录日志----")
+        ret = functionName(*args,**kwargs)
+        return ret
+    return func_in
+
+@func
+def text1():
+    print("----1-----")
+@func
+def text2():
+    print("----2-----")
+    return "haha"
+@func
+def text3(a):
+    print("----3-----")
+
+text1()
+ret = text2()
+print(ret)
+text3()
+```
+装饰器带参数<br>
+```
+def timefun_arg(pre="hello"):
+    def timefun(func):
+        def wrappedfunc():
+            print("%s called at %s %s"%(func.__name__,ctime(),pre))
+            return func()
+        return wrappedfunc
+    return timefun
+
+@timefun_arg("python")
+def foo():
+    print("I am foo")
+
+foo()
+```
 两个装饰器的情况，先执行下面的函数<br>
+10.  类中动态添加方法  
+```
+p1.run = types.MethodType(run,p1)
+```
+11. 限制实例属性(对继承的子类不起作用)<br>
+```
+class Person(object):
+    __slots__ = ("name","age")
+```
+12. 
 - ### Linux系统编程
 - ### 网络编程
 - ### web服务器案例
