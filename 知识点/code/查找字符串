@@ -1,0 +1,10 @@
+#题目：查找字符串。
+
+# _*_ coding : utf-8 _*_
+
+# 查找字符串
+str1 = "abcde"
+str2 = "cde"
+print(str1.find(str2))
+
+#2
