@@ -154,7 +154,17 @@ p1.run = types.MethodType(run,p1)
 class Person(object):
     __slots__ = ("name","age")
 ```
-12. 
+12. 小整数[-5,256]共用对象，常驻内存<br>
+单个字符共用对象，常驻内存<br>
+单个单词，不可修改，默认开启intern机制，共用对象，引用计数为0，则销毁 <br>
+字符串（含有空格），不可修改，没开启intern机制，不共用对象，引用计数为0，销毁<br>
+大整数不共用内存，引用计数为0，销毁<br>
+13. 内建函数<br>
+range：range(start, stop[, step]) -> list of integers<br>
+map：map函数会根据提供的函数对指定序列做映射，map(function, sequence[, sequence, ...]) -> list<br>
+filter：filter函数会对指定序列执行过滤操作，filter(function or None, sequence) -> list, tuple, or string<br>
+reduce：reduce函数会对参数序列中元素进行累积，reduce(function, sequence[, initial]) -> value<br>
+sorted：sorted(iterable, cmp=None, key=None, reverse=False) --> new sorted list<br>
 - ### Linux系统编程
 - ### 网络编程
 - ### web服务器案例
