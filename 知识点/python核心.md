@@ -166,7 +166,3 @@ filter：filter函数会对指定序列执行过滤操作，filter(function or N
 reduce：reduce函数会对参数序列中元素进行累积，reduce(function, sequence[, initial]) -> value<br>
 sorted：sorted(iterable, cmp=None, key=None, reverse=False) --> new sorted list<br>
 14. 
-- ### Linux系统编程
-- ### 网络编程
-- ### web服务器案例
-- ### 正则表达式
