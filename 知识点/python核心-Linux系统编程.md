@@ -57,7 +57,7 @@ if __name__ == '__main__':
     p = Process(target=text)
     #子进程开始
     p.start()
-    p.join()#堵塞，等到子进程结束在继续向后执行
+    p.join()#解堵塞，等到子进程结束在继续向后执行
 
     print("---main--- ")
 
@@ -110,4 +110,24 @@ Queue.get_nowait():Queue.get(False)非阻塞，抛出异常<br>
 Queue.put(item):将item写入队列<br>
 Queue.put_nowait():Queue.put(item,False)如果没有空间抛出异常<br>
 - ### Linux系统编程-线程
-1. 
+1. threading-Thread<br>
+```
+from threading import Thread
+import time
+
+
+def text():
+    print("---lalalalala----")
+    time.sleep(1)
+
+
+for i in range(5):
+    #开启线程
+    t = Thread(target=text)
+    t.start()
+
+```
+2. Thread子类创建多线程<br>
+```
+ 
+```
