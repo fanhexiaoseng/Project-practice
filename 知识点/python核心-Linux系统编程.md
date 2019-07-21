@@ -145,6 +145,7 @@ if __name__ == "__main__":
 ```
 3. 线程共享全局变量<br>
 但是不共享函数里面的局部变量<br>
+threading.local()全局不共享对象<br>
 4. 互斥锁<br>
 ```
 from threading import Thread, Lock
@@ -179,4 +180,6 @@ p2 = Thread(target=text2)
 p2.start()
 
 ```
-5. 
+5. 生产者与消费者模型解决耦合问题-queue.Queue<br>
+6. GIL全局解释器锁导致进程效率高于线程，每个核心只能执行一个线程，GIL进行切换<br>
+
