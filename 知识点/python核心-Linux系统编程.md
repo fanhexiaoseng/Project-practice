@@ -57,7 +57,7 @@ if __name__ == '__main__':
     p = Process(target=text)
     #子进程开始
     p.start()
-    p.join()#解堵塞，等到子进程结束在继续向后执行
+    p.join()#程序解堵塞，等到子进程结束在继续向后执行（主进程堵塞）
 
     print("---main--- ")
 
@@ -129,5 +129,54 @@ for i in range(5):
 ```
 2. Thread子类创建多线程<br>
 ```
- 
+import threading
+import time 
+
+class MyThread(threading.Thread):
+    def run(self):
+            for i in range(3):
+                    time.sleep(1)
+                    msg = "I'm"+self.name+"@"+str(i)
+                    print(msg)
+                        
+if __name__ == "__main__":
+    t = MyThread()
+    t.start()
 ```
+3. 线程共享全局变量<br>
+但是不共享函数里面的局部变量<br>
+4. 互斥锁<br>
+```
+from threading import Thread, Lock
+#全局变量
+g_num = 0
+
+def text1():
+    global g_num
+    #上锁
+    mutex.acquire()
+    for i in range(1000000):
+        g_num += 1
+    #解锁
+    mutex.release()
+    print("---text1-%d" % g_num)
+
+def text2():
+    global g_num
+    mutex.acquire()
+    for i in range(1000000):
+        g_num += 1
+    mutex.release()
+    print("---text2-%d" % g_num)
+
+# 创建一把锁
+mutex = Lock()
+# 创建线程1
+p1 = Thread(target=text1)
+p1.start()
+# 创建线程2
+p2 = Thread(target=text2)
+p2.start()
+
+```
+5. 
