@@ -41,7 +41,7 @@ receData = udpSocket.recvfrom(1024)
 content, destinfo = receData
 
 # 显示接收的数据
-print("content is %s"%destinfo.decode("gb2312"))
+print("content is %s"%content.decode("gb2312"))
 
 udpSocket.close()
 ```
