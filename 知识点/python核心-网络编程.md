@@ -45,4 +45,19 @@ print("content is %s"%content.decode("gb2312"))
 
 udpSocket.close()
 ```
-6. 
+6. udp广播<br>
+```
+import socket
+# 广播地址
+dest = ("<broadcast>", 7788)
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+# 对套接字进行修改，否则不能广播
+s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+# 广播发出
+s.sendto("hi", dest)
+while True:
+    (buf, address) = s.recvfrom(2048)
+    print("Received from %s: %s" % (address, buf))
+
+```
+7. 
