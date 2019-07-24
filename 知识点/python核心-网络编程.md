@@ -60,4 +60,53 @@ while True:
     print("Received from %s: %s" % (address, buf))
 
 ```
-7. 
+7. tcp服务器流程<br>
+```
+from socket import *
+# 创建套接字
+serverSocket = socket(AF_INET, SOCK_STREAM)
+# 绑定端口
+serverSocket.bind(("", 7788))
+# 改为被动接听模式
+serverSocket.listen(5)
+# 等待接电话，此时堵塞，clientsocket为新的服务客户的客户端，clientaddr为客户地址
+clientsocket, clientaddr = serverSocket.accept()
+# 新套接字接受信息
+recvDate = clientsocket.recv(1024)
+
+print("%s:%s" % (str(clientaddr), recvDate))
+
+clientsocket.close()
+serverSocket.close()
+```
+8. tcp客户端流程<br>
+```
+from socket import *
+
+# 创建套接字
+clientSocket = socket(AF_INET, SOCK_STREAM)
+clientSocket.connect(("192.168.1.124", 7788))
+
+clientSocket.send("hahah".encode("gb2312"))
+recvData = clientSocket.recv(1024)
+
+print("recvData:%s" % recvData)
+
+clientSocket.close()
+```
+9. 浏览器访问百度的过程<br>
+1.先要解析出baidu.com对应的ip地址<br>
+ 1.先知道默认网关的mac<br>
+   1.1使用arp获取默认网关的mac地址<br>
+ 2.组织数据发送给默认网关（ip还是dns服务器的ip，但是mac地址是默认网关的mac地址）<br>
+ 3.默认网关拥有转发数据的能力，把数据转发给路由器<br>
+ 4.路由器根据自己的路由协议，来选择一个合适的较快的路径转发给目的网关<br>
+ 5.目的网关（dns服务器所在的网关），把数据转发给dns服务器<br>
+ 6.dns服务器查询解析出baidu.com对应的ip地址，并把它原路返回给请求这个域名的client<br>
+2.得到了baidu.com对应的ip地址之后，会发送tcp的3次握手，进行连接<br>
+3.使用http协议发送请求数据给web服务器<br>
+4.web服务器收到数据请求之后，通过查询自己服务器得到相应的结果，原路返回给浏览器<br>
+5.历览器接受到数据后通过浏览器自己渲染功能来显示这个网页<br>
+6.浏览器关闭tcp连接，既4次挥手<br>
+完成整个访问过程<br>
+
