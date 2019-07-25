@@ -142,6 +142,7 @@ def main():
 
             client = Process(target=dealWithClient, args=(newSocket, destAddr))
             client.start()
+            #进程可以关闭这个新客户端，但是线程不可以关闭这个套接字，因为线程共享数据
             newSocket.close()
     finally:
         serSocket.close()
