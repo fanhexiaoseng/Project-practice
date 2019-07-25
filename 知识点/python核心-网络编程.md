@@ -111,4 +111,42 @@ clientSocket.close()
 完成整个访问过程<br>
 10. 图示<br>
 ![image](https://github.com/fanhexiaoseng/Project-practice/blob/master/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E3%80%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png)
-11. 
+11. 多进程服务器<br>
+```
+from multiprocessing import *
+from socket import *
+
+# 多进程函数
+def dealWithClient(newSocket, destAddr):
+    while True:
+        recvData = newSocket.recv(1024)
+        if len(recvData) > 0:
+            print("revv[%s]:[%s]" % (str(destAddr), recvData))
+        else:
+            print("[%s]客户端已关闭" % str(destAddr))
+            break
+    newSocket.close()
+
+def main():
+    serSocket = socket(AF_INET, SOCK_STREAM)
+    # 套接字可重复使用,注意跟广播参数不一样
+    serSocket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+    localAddr = ("", 7788)
+    serSocket.bind(localAddr)
+    serSocket.listen(5)
+    try:
+        while True:
+            print("-----主进程等待新客户端的到来-----")
+            newSocket, destAddr = serSocket.accept()
+            print("-----创建一个新的进程负责处理数据[%s]" % str(destAddr))
+
+            client = Process(target=dealWithClient, args=(newSocket, destAddr))
+            client.start()
+            newSocket.close()
+    finally:
+        serSocket.close()
+
+if __name__ == '__main__':
+    main()
+```
+12. 
