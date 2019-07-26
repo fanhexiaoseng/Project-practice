@@ -150,4 +150,41 @@ def main():
 if __name__ == '__main__':
     main()
 ```
-12. 
+12. 单进程非堵塞服务器<br>
+```
+from socket import *
+
+serSocket = socket(AF_INET, SOCK_STREAM)
+localAddr = ("", 7788)
+serSocket.bind(localAddr)
+# 让这个socket变成非堵塞，如果accept之前没有客户端连接，会报错
+serSocket.setblocking(False)
+serSocket.listen(100)
+
+clientAddrList = []
+
+while True:
+    try:
+        clientSocket, clientAddr = serSocket.accept()
+    except:
+        pass
+    else:
+        print("一个新的客户端到来：%s" % str(clientAddr))
+        clientSocket.setblocking(False)
+        clientAddrList.append((clientSocket, clientAddr))
+
+    for clientSocket, clientAddr in clientAddrList:
+        try:
+            recvData = clientSocket.recv(1024)
+        except:
+            pass
+        else:
+            if len(recvData) > 0:
+                print("%s:%s" % (str(clientAddr), recvData))
+            else:
+                clientSocket.close()
+                clientAddrList.remove((clientSocket, clientAddr))
+                print("%s已经下线" % str(clientAddr))
+
+```
+13. 
