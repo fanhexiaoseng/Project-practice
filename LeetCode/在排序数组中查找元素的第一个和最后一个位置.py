@@ -16,3 +16,38 @@
 输出: [-1,-1]
 
 '''
+class Solution(object):
+    def extreme_insertion_index(self,nums,target,left):
+        lo = 0
+        hi = len(nums)
+        while lo <hi:
+            mid = (lo+hi)//2
+            if nums[mid] > target or (left and target == nums[mid]):
+                hi = mid
+            else:
+                lo = mid +1
+        return lo
+    
+    def searchRange(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        # a = []
+        # k = 0
+        # while k <len(nums):
+        #     if target == nums[k]:
+        #         a.append(k)
+        #         k+=1
+        # if not a:
+        #     return [-1,-1]
+        # elif a[1] is None:
+        #     a.append(-1)
+        #     return a
+        # else:
+        #     return [a[0],a[len(a)-1]]
+        left_idx = self.extreme_insertion_index(nums,target,True)
+        if left_idx == len(nums) or nums[left_idx] != target:
+            return [-1,-1]
+        return [left_idx,self.extreme_insertion_index(nums,target,False)-1]
