@@ -258,4 +258,93 @@ while True:
 ```
 14. 计算密集型-需要占用大量的CPU资源-多进程<br>
 io密集型-需要网络功能，大量的时间都在等待网络数据的到来-多线程、协程<br>
-15. 
+15. 协程简单实现原理yield<br>
+```
+import time
+
+def A():
+    while True:
+        print("----A---")
+        yield
+        time.sleep(0.5)
+
+def B(c):
+    while True:
+        print("----B---")
+        c.next()
+        time.sleep(0.5)
+
+if __name__=='__main__':
+    a = A()
+    B(a)
+```
+16. greenlet实现协程sudo pip3 install greenlet<br>
+```
+from greenlet import greenlet
+import time
+
+def test1():
+    while True:
+        print "---A--"
+        gr2.switch()
+        time.sleep(0.5)
+
+def test2():
+    while True:
+        print "---B--"
+        gr1.switch()
+        time.sleep(0.5)
+
+gr1 = greenlet(test1)
+gr2 = greenlet(test2)
+
+#切换到gr1中运行
+gr1.switch()
+```
+17. gevent实现协程sudo pip3 install gevent<br>
+```
+import gevent
+
+def f(n):
+    for i in range(n):
+        print gevent.getcurrent(), i
+        # 遇到耗时操作时，将执行权交出去，切换下一个程序
+        gevent.sleep(1)
+
+g1 = gevent.spawn(f, 5)
+g2 = gevent.spawn(f, 5)
+g3 = gevent.spawn(f, 5)
+g1.join()
+g2.join()
+g3.join()
+```
+18. gevent实现协程服务器<br>
+```
+import sys
+import time
+import gevent
+
+from gevent import socket,monkey
+monkey.patch_all()
+
+def handle_request(conn):
+    while True:
+        data = conn.recv(1024)
+        if not data:
+            conn.close()
+            break
+        print("recv:", data)
+        conn.send(data)
+
+
+def server(port):
+    s = socket.socket()
+    s.bind(('', port))
+    s.listen(5)
+    while True:
+        cli, addr = s.accept()
+        gevent.spawn(handle_request, cli)
+
+if __name__ == '__main__':
+    server(7788)
+```
