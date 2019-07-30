@@ -85,4 +85,12 @@ In [19]: re.split(r":| ","info:hello world")
 Out[19]: ['info', 'hello', 'world']
 ```
 10. re默认为贪婪模式，用？开启非贪婪模式<br>
+```
+In [20]: s = "This is a number 234-235-22-423"
 
+In [22]: re.match(r".+(\d+-\d+-\d+-\d+)",s).group(1)
+Out[22]: '4-235-22-423'
+In [23]: re.match(r".+?(\d+-\d+-\d+-\d+)",s).group(1)
+Out[23]: '234-235-22-423'
+
+```
