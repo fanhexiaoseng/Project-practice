@@ -39,5 +39,50 @@ In [2]: re.match(r"\w{4,20}@163\.com","xiaowang@163.com").group()
 Out[2]: 'xiaowang@163.com'
 In [3]: re.match(r".*\bver\b","ho ver abc").group()
 Out[3]: 'ho ver'
+```
+5. | 匹配左右任意一个表达式<br>
+(ab) 将括号中字符作为一个分组<br>
+\num 引用分组num匹配到的字符串<br>
+(?P<name>) 分组起别名<br>
+(?p=name) 引用别名为name分组匹配到的字符串<br>
+```
+In [4]: re.match(r"[1-9]?\d$|100","100").group()
+Out[4]: '100'
+In [5]: re.match(r"[1-9]?\d$|100","55").group()
+Out[5]: '55'
+In [6]: re.match(r"\w{4,20}@(163|126|qq)\.com","xiaowang@163.com").group()
+Out[6]: 'xiaowang@163.com'
+In [12]: ret = re.match(r"<([a-zA-Z]*)>\w*</\1>","<html>hello</html>")
+
+In [13]: ret.group()
+Out[13]: '<html>hello</html>'
+In [14]: re.match(r"<(?P<key1>\w*)>.*</(?P=key1)>","<html>hello</html>")
+Out[14]: <_sre.SRE_Match object; span=(0, 18), match='<html>hello</html>'>
+```
+6. search<br>
+```
+In [15]: re.search(r"\d+","阅读次数为：9999")
+Out[15]: <_sre.SRE_Match object; span=(6, 10), match='9999'>
 
 ```
+7. findall<br>
+```
+In [16]: ret = re.findall(r"\d+","python = 9,php = 6")
+
+In [17]: ret
+Out[17]: ['9', '6']
+
+```
+8. sub<br>
+```
+In [18]: re.sub(r"\d+","666","阅读次数为：9999")
+Out[18]: '阅读次数为：666'
+
+```
+9. split<br>
+```
+In [19]: re.split(r":| ","info:hello world")
+Out[19]: ['info', 'hello', 'world']
+```
+10. re默认为贪婪模式，用？开启非贪婪模式<br>
+
