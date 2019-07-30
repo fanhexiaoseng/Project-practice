@@ -34,3 +34,10 @@ Out[16]: '1'
 $ 匹配字符串结尾<br>
 \b 匹配一个单词的边界<br>
 \B 匹配非单词边界<br>
+```
+In [2]: re.match(r"\w{4,20}@163\.com","xiaowang@163.com").group()
+Out[2]: 'xiaowang@163.com'
+In [3]: re.match(r".*\bver\b","ho ver abc").group()
+Out[3]: 'ho ver'
+
+```
