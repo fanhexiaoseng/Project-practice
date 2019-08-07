@@ -19,3 +19,11 @@ class Solution:
                     break
             i+=1
         return a
+# 通过
+class Solution(object):
+    def dailyTemperatures(self, T):
+        stack, r = [], [0] * len(T)
+        for i, t in enumerate(T):
+            while stack and T[stack[-1]] < t: r[stack.pop()] = i - stack[-1]
+            stack.append(i)
+        return r
