@@ -24,3 +24,11 @@ class Solution:
         for i in range(1,len(nums)):
             if nums[i-1] == nums[i]:
                 return nums[i]
+# 方法二
+class Solution:
+    def findDuplicate(self, nums):
+        seen = set()
+        for num in nums:
+            if num in seen:
+                return num
+            seen.add(num)
