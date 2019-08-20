@@ -8,6 +8,7 @@
 4. 创建用户密码：mysqladmin -u root password "new_password"<br>
 5. 停止服务：service mysql stop<br>
 6. 重启服务：service mysql restart<br>
+7. 登陆：mysql -uroot -p
 - ### 数据类型
 1. INT	整型	4字节整数类型，范围约+/-21亿
 2. BIGINT	长整型	8字节整数类型，范围约+/-922亿亿
@@ -20,3 +21,28 @@
 9. DATE	日期类型	存储日期，例如，2018-06-22
 10. TIME	时间类型	存储时间，例如，12:20:59
 11. DATETIME	日期和时间类型	存储日期+时间，例如，2018-06-22 12:20:59
+- ### 数据库操作
+1. show databases：列出所有的数据库
+2. create database text:创建新的数据库
+3. drop database text：删除数据库
+4. use text：使用数据库
+5. select now（）：查看当前时间
+6. select version（）：查看版本
+7. select database（）：查看当前数据库
+- ### 数据表操作
+1.
+```
+create table student(
+    id int unsigned not null auto_increment primary key,
+    name varchar(30),
+    age tinyint unsigned default 0，
+    gender enum("男"，"女")
+);
+```
+2. show tables：列出所有表
+3. show create table students：查看创建表的SQL语句
+4. desc student：查看表结构
+5. create student：创建表
+6. drop student：删除表
+- ### 修改数据表
+1. 
