@@ -45,4 +45,29 @@ create table student(
 5. create student：创建表
 6. drop student：删除表
 - ### 修改数据表
-1. 
+1. alter table student add birthday datetime：增加字段
+2. alter table student modify birthday date：修改字段的数据类型与约束
+3. alter table student change birthday birth datetime：修改字段的名字
+4. alter table student drop birthday ：删除字段
+- ### CURD
+1. 增加
+```
+insert into student values(0,"马思远"),(1,"李奥飞");
+insert into student (id,name) values(0,"马思远");
+```
+2. 修改
+```
+update student set mane="马思远" where id=1;
+```
+3. 查询
+```
+select * from student where id=1;
+select id as "编号"，name as "姓名" from student;
+```
+4. 删除
+```
+delete from student where id=1;
+alter table student add id_delete bit default 0;
+update student set is_delete=1 where id=1;
+```
+- ### 查询
