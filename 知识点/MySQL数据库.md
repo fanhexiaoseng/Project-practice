@@ -71,3 +71,41 @@ alter table student add id_delete bit default 0;
 update student set is_delete=1 where id=1;
 ```
 - ### 查询
+1. 消除重复
+```
+select distinct gender from student;
+```
+2. 逻辑条件
+```
+select * from student where age>18 and age<28;
+```
+3. 模糊查询
+```
+select name from student where name like "__%";
+```
+4. 范围查询
+```
+select name, age from student where age in (12,18,34);
+select name, age from student where age between 12 and 34;
+select * from student where height is null;
+```
+5. 排序
+```
+select * from student where (age between 18 and 34) and gender=1 order by age;
+select * from student where (age between 18 and 34) and gender=2 order by age desc,height asc;
+```
+6. 聚合
+```
+select count(*) from student where is_delete=0;max,min,sum,avg
+select * from student where id=(select min(id) from student where is_delete=0);
+```
+7. 分组
+```
+select gender as 性别 ,count(*) from student group by gender;
+select gender as 性别 ,count(*) from student group by gender having gender="男";
+```
+8. 分页
+```
+select * from student limit 5,10;
+limit (n-1)*m,m
+```
