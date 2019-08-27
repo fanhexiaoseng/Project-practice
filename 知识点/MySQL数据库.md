@@ -36,7 +36,8 @@ create table student(
     id int unsigned not null auto_increment primary key,
     name varchar(30),
     age tinyint unsigned default 0，
-    gender enum("男"，"女")
+    gender enum("男"，"女")，
+    foreign key(subid) references subjects(id)外键 
 );
 ```
 2. show tables：列出所有表
@@ -109,3 +110,22 @@ select gender as 性别 ,count(*) from student group by gender having gender="�
 select * from student limit 5,10;
 limit (n-1)*m,m
 ```
+9. 级联操作
+```
+alter table scores add constraint stu_sco foreign key(stuid) references students(id) on delete cascade;
+restrict（限制）：默认值，抛异常
+cascade（级联）：如果主表的记录删掉，则从表中相关联的记录都将被删除
+set null：将外键设置为空
+no action：什么都不做
+```
+10. 连接
+```
+select students.sname,subjects.stitle,scores.score
+from scores
+inner join students on scores.stuid=students.id
+inner join subjects on scores.subid=subjects.id;
+表A inner join 表B：表A与表B匹配的行会出现在结果中
+表A left join 表B：表A与表B匹配的行会出现在结果中，外加表A中独有的数据，未对应的数据使用null填充
+表A right join 表B：表A与表B匹配的行会出现在结果中，外加表B中独有的数据，未对应的数据使用null填充
+```
+11. 
