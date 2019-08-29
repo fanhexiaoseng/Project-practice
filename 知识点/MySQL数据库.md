@@ -128,4 +128,18 @@ inner join subjects on scores.subid=subjects.id;
 表A left join 表B：表A与表B匹配的行会出现在结果中，外加表A中独有的数据，未对应的数据使用null填充
 表A right join 表B：表A与表B匹配的行会出现在结果中，外加表B中独有的数据，未对应的数据使用null填充
 ```
-11. 
+11. 视图
+```
+create view stuscore as 
+select students.*,scores.score from scores
+inner join students on scores.stuid=students.id;
+select * from stuscore;
+```
+12. 事务
+```
+事务四大特性(简称ACID)
+原子性(Atomicity)：事务中的全部操作在数据库中是不可分割的，要么全部完成，要么均不执行
+一致性(Consistency)：几个并行执行的事务，其执行结果必须与按某一顺序串行执行的结果相一致
+隔离性(Isolation)：事务的执行不受其他事务的干扰，事务执行的中间结果对其他事务必须是透明的
+持久性(Durability)：对于任意已提交事务，系统必须保证该事务对数据库的改变不被丢失，即使数据库出现故障
+```
