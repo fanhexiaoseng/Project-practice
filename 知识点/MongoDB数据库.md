@@ -36,3 +36,33 @@ db.stu.insert(s1)
 ```
 db.集合名称.find()
 ```
+3. 更新
+```
+db.集合名称.update(
+   <query>,
+   <update>,
+   {multi: <boolean>}
+)
+db.stu.update({name:'hr'},{name:'mnc'})
+修改多条匹配到的数据
+db.stu.update({},{$set:{gender:0}},{multi:true})
+```
+4. 保存
+```
+db.集合名称.save(document)
+db.stu.save({_id:'20160102','name':'yk',gender:1})
+```
+5. 删除
+```
+db.集合名称.remove(
+   <query>,
+   {
+     justOne: <boolean>
+   }
+)
+db.stu.remove({gender:0},{justOne:true})
+```
+6. 查询重点
+```
+
+```
