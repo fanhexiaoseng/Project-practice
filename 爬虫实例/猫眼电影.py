@@ -1,8 +1,9 @@
 import requests
 import re
 import json
-import time
+# import time
 from requests.exceptions import RequestException
+from multiprocessing import Pool
 
 
 def get_one_page(url):
@@ -47,6 +48,11 @@ def main(offset):
 
 
 if __name__ == '__main__':
-    for i in range(10):
-        main(offset=i * 10)
-        time.sleep(1)
+    pool = Pool()
+    pool.map(main,[i * 10 for i in range(10)])
+    pool.close()
+    pool.join()
+
+    # for i in range(10):
+    #     main(offset=i * 10)
+    #     time.sleep(1)
